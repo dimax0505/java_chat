@@ -59,6 +59,9 @@
       <find>put</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
@@ -124,6 +127,7 @@
     <option name="width" value="1524" />
     <option name="height" value="921" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -186,7 +190,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -373,7 +377,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -738,9 +742,9 @@
         <state relative-caret-position="264">
           <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#786#787#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#746#747#0" expanded="false" />
+            <element signature="e#786#787#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -758,8 +762,8 @@
         <state relative-caret-position="660">
           <caret line="38" column="32" lean-forward="false" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
           <folding>
-            <element signature="e#979#980#0" expanded="true" />
-            <element signature="e#1026#1027#0" expanded="true" />
+            <element signature="e#979#980#0" expanded="false" />
+            <element signature="e#1026#1027#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -769,8 +773,8 @@
         <state relative-caret-position="242">
           <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           <folding>
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#259#260#0" expanded="true" />
+            <element signature="e#240#241#0" expanded="false" />
+            <element signature="e#259#260#0" expanded="false" />
           </folding>
         </state>
       </provider>
