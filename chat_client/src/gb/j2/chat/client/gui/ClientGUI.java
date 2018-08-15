@@ -1,5 +1,6 @@
 package gb.j2.chat.client.gui;
 
+import gb.j2.chat.library.Messages;
 import gb.j2.network.SocketThread;
 import gb.j2.network.SocketThreadListener;
 
@@ -11,13 +12,16 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler, SocketThreadListener {
+public class ClientGUI extends JFrame implements ActionListener, Thread.UncaughtExceptionHandler,
+        SocketThreadListener {
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
 
     private final JTextArea log = new JTextArea();
     private final JPanel panelTop = new JPanel(new GridLayout(2, 3));
+    //    private final JTextField tfIPAddress = new JTextField("95.84.209.91");
     private final JTextField tfIPAddress = new JTextField("127.0.0.1");
     private final JTextField tfPort = new JTextField("8189");
     private final JCheckBox cbAlwaysOnTop = new JCheckBox("Alwayson top");
@@ -37,9 +41,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
-            public void run() {
-                new ClientGUI();
-            }
+            public void run() { new ClientGUI(); }
         });
     }
 
@@ -62,7 +64,6 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         btnSend.addActionListener(this);
         tfMessage.addActionListener(this);
         btnDisconnect.addActionListener(this);
-
         panelTop.add(tfIPAddress);
         panelTop.add(tfPort);
         panelTop.add(cbAlwaysOnTop);
@@ -72,14 +73,12 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         panelBottom.add(btnDisconnect, BorderLayout.WEST);
         panelBottom.add(tfMessage, BorderLayout.CENTER);
         panelBottom.add(btnSend, BorderLayout.EAST);
-
+        panelBottom.setVisible(false);
         add(panelTop, BorderLayout.NORTH);
         add(scrollLog, BorderLayout.CENTER);
         add(panelBottom, BorderLayout.SOUTH);
         add(scrollUsers, BorderLayout.EAST);
         setVisible(true);
-        panelBottom.setVisible(false);
-
     }
 
 
@@ -107,8 +106,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         } else if (src == btnLogin || src == tfIPAddress || src == tfLogin || src == tfPassword || src == tfPort) {
             connect();
         } else if (src == btnDisconnect) {
-            disconnect();
-
+            socketThread.close();
         } else if (src == btnSend || src == tfMessage) {
             sendMessage();
         } else {
@@ -116,21 +114,10 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         }
     }
 
-    private void disconnect() {
-        if (socketThread != null) {
-            socketThread.close();
-            panelBottom.setVisible(false);
-            panelTop.setVisible(true);
-        } else log.append("Нет соединения");
-    }
-
     private void connect() {
         Socket socket = null;
         try {
             socket = new Socket(tfIPAddress.getText(), Integer.parseInt(tfPort.getText()));
-//            add(panelBottom, BorderLayout.SOUTH);
-//            panelBottom.setVisible(true);
-//            panelTop.setVisible(false);
         } catch (IOException e) {
             log.append("Exception: " + e.getMessage());
         }
@@ -185,7 +172,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     public void onStopSocketThread(SocketThread thread) {
         panelBottom.setVisible(false);
         panelTop.setVisible(true);
-        putLog("socket thread stop");
+        putLog("connection lost");
     }
 
     @Override
@@ -198,6 +185,9 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
         putLog("socket is ready");
         panelBottom.setVisible(true);
         panelTop.setVisible(false);
+        String login = tfLogin.getText();
+        String password = new String(tfPassword.getPassword());
+        thread.sendString(Messages.getAuthRequest(login, password));
     }
 
     @Override

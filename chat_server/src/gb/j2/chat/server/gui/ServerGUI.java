@@ -36,25 +36,24 @@ public class ServerGUI extends JFrame implements ActionListener, ChatServerListe
         setResizable(false);
         setTitle("Chat Server");
         setAlwaysOnTop(true);
-       setLayout(new GridLayout());
         btnStart.addActionListener(this);
         btnStop.addActionListener(this);
-        JScrollPane scrollLog = new JScrollPane(log);
-
         log.setEditable(false);
         log.setLineWrap(true);
+        JScrollPane scrollLog = new JScrollPane(log);
         panelTop.add(btnStart);
         panelTop.add(btnStop);
-        add(scrollLog, BorderLayout.SOUTH);
+        add(scrollLog, BorderLayout.CENTER);
         add(panelTop,BorderLayout.NORTH);
-        add(btnStart);
-        add(btnStop);
         setVisible(true);
     }
 
     @Override
     public void onChatServerMessage(String msg) {
-
+        SwingUtilities.invokeLater(() -> {
+            log.append(msg + "\n");
+            log.setCaretPosition(log.getDocument().getLength());
+        });
     }
 
     @Override
