@@ -106,10 +106,10 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
     public synchronized void onReceiveString(SocketThread thread, Socket socket, String msg) {
         ClientThread client = (ClientThread) thread;
         if (client.isAuthorized()) {
-//            String [] msgSplit = msg.split(" ");
-//            if (msgSplit[0].equals("/w")) {
-//                handleDirectMsg(client, msg, msgSplit[1]);
-//            }else
+            String [] msgSplit = msg.split(" ");
+            if (msgSplit[1].equals("/w")) {
+                handleDirectMsg(client, msgSplit[3], msgSplit[2]);
+            }else
          handleAuthMsg(client, msg);
         } else {
             handleNonAuthMsg(client, msg);
@@ -149,9 +149,14 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         }
     }
 
-//    private void handleDirectMsg (ClientThread clientSrc, String msg, String nickname) {
-//
-//    }
+    private void handleDirectMsg (ClientThread clientSrc, String msg, String nickname) {
+        for (int i = 0; i < clients.size(); i++) {
+            ClientThread client = (ClientThread) clients.get(i);
+            if (!client.getNickname().equals(nickname)) continue;
+            client.sendString("private message from: " + clientSrc.getNickname() + " " + msg);
+        }
+
+    }
 
     private void sendToAuthorizedClients(String msg) {
         for (int i = 0; i < clients.size(); i++) {

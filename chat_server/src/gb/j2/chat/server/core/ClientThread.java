@@ -24,6 +24,10 @@ public class ClientThread extends SocketThread{
         sendString(Messages.getAuthAccept(nickname));
     }
 
+    String getNickname () {
+        return this.nickname;
+    }
+
     void authError() {
         sendString(Messages.getAuthError());
         close();
